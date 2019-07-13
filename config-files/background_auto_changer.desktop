@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name="Background auto changer"
+Type=Application
+NoDisplay=true
+Exec=/home/estevao/.background_auto_changer.sh 10m
+Terminal=false
+X-GNOME-Autostart-enabled=true
+
