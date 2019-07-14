@@ -10,3 +10,7 @@ sh -c "$(wget -O- https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/maste
 # set up github:
 git config --global user.email "estevao_carvalho.10@hotmail.com"
 git config --global user.name "EstevaoCostaG3"
+#install java12:
+add-apt-repository ppa:linuxuprising/java
+apt update
+apt install oracle-java12-installer
