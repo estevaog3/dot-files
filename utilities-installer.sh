@@ -14,3 +14,7 @@ git config --global user.name "EstevaoCostaG3"
 add-apt-repository ppa:linuxuprising/java
 apt update
 apt install oracle-java12-installer
+#install anaconda:
+wget https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh
+bash Anaconda3-2019.03-Linux-x86_64.sh
+
