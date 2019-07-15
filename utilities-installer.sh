@@ -2,7 +2,7 @@
 
 # install basic utilities
 
-apt install -y vim zsh git htop screenfetch weka inxi tmux cmatrix nitrogen cmake virtualbox-qt gnome-tweak-tool gimp
+apt install -y vim zsh git htop screenfetch weka inxi tmux cmatrix nitrogen cmake virtualbox-qt gnome-tweak-tool gimp python3-pip
 # set zsh as default shell
 sed -i '/^estevao/ s/\/bin\/bash/\/bin\/zsh/' /etc/passwd
 # install Oh My Zsh
