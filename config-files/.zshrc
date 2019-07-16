@@ -119,8 +119,6 @@ alias ls="ls --color=tty --group-directories-first"
 alias lsa="ls -a --color=tty --group-directories-first"
 # my custom settings:
 #
-# fix jupyter notebook command not found:
-export PATH=/home/estevao/anaconda3/bin:$PATH
 # get suggestions to install command not found, just like in bash
 source /etc/zsh_command_not_found
 # load my custom commands in every terminal session
