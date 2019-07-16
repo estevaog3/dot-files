@@ -99,8 +99,10 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # my custom aliases:
+# general:
 alias jn="jupyter notebook"
 alias x="xdg-open"
+# apt, apt-cache:
 alias ai="sudo apt install"
 alias arm="sudo apt remove"
 alias aup="sudo apt update"
@@ -112,7 +114,9 @@ alias asw="apt show"
 alias al="apt list" 
 alias aarm="sudo apt autoremove"
 alias apu="sudo apt purge"
-
+#ls:
+alias ls="ls --color=tty --group-directories-first"
+alias lsa="ls -a --color=tty --group-directories-first"
 # my custom settings:
 #
 # fix jupyter notebook command not found:
