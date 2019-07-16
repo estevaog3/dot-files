@@ -115,8 +115,8 @@ alias al="apt list"
 alias aarm="sudo apt autoremove"
 alias apu="sudo apt purge"
 #ls:
-alias ls="ls --color=tty --group-directories-first"
-alias lsa="ls -a --color=tty --group-directories-first"
+alias ls="ls --color=auto --group-directories-first"
+alias lsa="ls -a --color=auto --group-directories-first"
 # my custom settings:
 #
 # get suggestions to install command not found, just like in bash
