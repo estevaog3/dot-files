@@ -121,5 +121,3 @@ alias lsa="ls -a --color=tty --group-directories-first"
 #
 # get suggestions to install command not found, just like in bash
 source /etc/zsh_command_not_found
-# load my custom commands in every terminal session
-source ~/.custom_commands.sh
