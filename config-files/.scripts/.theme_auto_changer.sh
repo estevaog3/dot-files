@@ -15,4 +15,9 @@ then
 	MIN_DIFF=$((($TIME_DIFF - $HOUR_DIFF * 3600) / 60))
 	sleep ${HOUR_DIFF}h ${MIN_DIFF}m
 	dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
+elif [ $HOUR -gt 0 -o $HOUR -lt 2 ]
+then
+	dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
+else
+	dconf write /org/gnome/desktop/interface/gtk-theme "'Ambiance'"
 fi
