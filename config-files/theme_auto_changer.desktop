@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name="Theme auto changer"
+Type=Application
+NoDisplay=true
+Exec=/home/estevao/.theme_auto_changer.sh 18 30
+Terminal=false
+X-GNOME-Autostart-enabled=true
+
