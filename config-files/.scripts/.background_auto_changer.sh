@@ -1,4 +1,4 @@
 while [ true ]; do
-	nitrogen --set-auto --random /usr/share/backgrounds
+	nitrogen --set-auto --random ~/Pictures/Pictures/favorite-wallpapers
 	sleep $1
 done
