@@ -13,7 +13,6 @@ then
 	TIME_DIFF=$(($DARK_TIME - $TIME))
 	HOUR_DIFF=$(($TIME_DIFF / 3600))
 	MIN_DIFF=$((($TIME_DIFF - $HOUR_DIFF * 3600) / 60))
-	echo h: $HOUR_DIFF and m: $MIN_DIFF
 	sleep ${HOUR_DIFF}h ${MIN_DIFF}m
 	dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
 fi
