@@ -103,6 +103,8 @@ source $ZSH/oh-my-zsh.sh
 alias jn="jupyter notebook"
 alias x="xdg-open"
 # apt, apt-cache:
+alias a="sudo apt"
+alias aar="sudo apt-add-repository"
 alias ai="sudo apt install"
 alias arm="sudo apt remove"
 alias aup="sudo apt update"
