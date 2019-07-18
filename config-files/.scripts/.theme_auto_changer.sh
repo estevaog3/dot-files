@@ -1,10 +1,10 @@
 #!/bin/bash
 DARK_HOUR=$1
 DARK_MIN=$2
-DARK_TIME=$(($DARK_HOUR * 3600 + $DARK_MIN * 60))
+DARK_TIME=`to-sec $DARK_HOUR $DARK_MIN`
 HOUR=`date +%H`
 MIN=`date +%M`
-TIME=$(($HOUR * 3600 + $MIN * 60))
+TIME=`to-sec $HOUR $MIN`
 if [ $TIME -lt $DARK_TIME ]
 then
 	if [ $(dconf read /org/gnome/desktop/interface/gtk-theme) != "'Ambiance'" ]; then
