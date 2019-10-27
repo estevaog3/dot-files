@@ -102,6 +102,8 @@ source $ZSH/oh-my-zsh.sh
 # general:
 alias jn="jupyter notebook"
 alias x="xdg-open"
+alias egrep="egrep --color=auto"
+alias dk="sudo docker"
 # apt, apt-cache:
 alias a="sudo apt"
 alias aar="sudo apt-add-repository"
