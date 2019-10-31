@@ -101,7 +101,7 @@ source $ZSH/oh-my-zsh.sh
 # my custom aliases:
 # general:
 alias jn="jupyter notebook"
-alias x="xdg-open"
+alias x="xdg-open $1 > /dev/null 2>&1"
 alias egrep="egrep --color=auto"
 alias dk="sudo docker"
 # apt, apt-cache:
