@@ -1,3 +1,1 @@
-#!/bin/bash
-LAST_SCREEN_SHOT=$(ls ~/Pictures | egrep -i '^screenshot' | tail -n 1)
-gimp ~/Pictures/"$LAST_SCREEN_SHOT"
+/home/estevao/.scripts/ess
