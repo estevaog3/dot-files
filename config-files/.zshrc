@@ -121,6 +121,10 @@ alias apu="sudo apt purge"
 #ls:
 alias ls="ls --color=auto --group-directories-first"
 alias lsa="ls --almost-all --color=auto --group-directories-first"
+alias lsal="ls -lh --almost-all --color=auto --group-directories-first"
+alias lsl="ls -lh --color=auto --group-directories-first"
+#git:
+alias gce="git commit -e"
 # my custom settings:
 #
 # get suggestions to install command not found, just like in bash
