@@ -2,7 +2,7 @@
 Name="Background auto changer"
 Type=Application
 NoDisplay=true
-Exec=/home/estevao/.scripts/.background_auto_changer.sh 10m
+Exec=/home/$USER/.scripts/.background_auto_changer.sh 10m
 Terminal=false
 X-GNOME-Autostart-enabled=true
 
