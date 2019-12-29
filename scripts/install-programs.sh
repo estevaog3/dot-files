@@ -1,8 +1,13 @@
 #!/bin/bash
 
-# install basic utilities
-
-apt install -y vim zsh git htop screenfetch weka inxi tmux cmatrix nitrogen cmake virtualbox-qt 
+# utilities:
+apt install -y vim zsh htop inxi tmux cmatrix  virtualbox-qt tree neofetch cowsay xclip
+# media:
+apt install -y byzanz ffmpeg nitrogen
+# dev:
+apt install -y git cmake openssh-server nodejs npm yarn mysql-server postgresql mongodb-org docker-ce docker-ce-cli containerd.io ack-grep
+# important:
+apt install -y timeshift clamav gufw needrestart debsecan lynis
 # install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 # set zsh as default shell
