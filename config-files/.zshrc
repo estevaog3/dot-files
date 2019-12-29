@@ -100,10 +100,12 @@ source $ZSH/oh-my-zsh.sh
 
 # my custom aliases:
 # general:
+alias rec="byzanz-record"
 alias jn="jupyter notebook"
 alias x="xdg-open $1 > /dev/null 2>&1"
 alias egrep="egrep --color=auto"
 alias dk="sudo docker"
+alias si="sudo snap install"
 # apt, apt-cache:
 alias a="sudo apt"
 alias aar="sudo apt-add-repository"
@@ -118,13 +120,14 @@ alias asw="apt show"
 alias al="apt list" 
 alias aarm="sudo apt autoremove"
 alias apu="sudo apt purge"
-#ls:
+# ls:
 alias ls="ls --color=auto --group-directories-first"
 alias lsa="ls --almost-all --color=auto --group-directories-first"
 alias lsal="ls -lh --almost-all --color=auto --group-directories-first"
 alias lsl="ls -lh --color=auto --group-directories-first"
 #git:
 alias gce="git commit -e"
+alias gnt="git init"
 # my custom settings:
 #
 # get suggestions to install command not found, just like in bash
