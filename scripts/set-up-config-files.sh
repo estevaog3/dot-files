@@ -1,7 +1,8 @@
 #!/bin/bash
-for DOT_FILE in ./config-files/.*; do
+BASE_DIR=..
+for DOT_FILE in $BASE_DIR/config-files/.*; do
 	cp $DOT_FILE ~/
 done
-for DOT_DESKTOP in config-files/*.desktop; do
+for DOT_DESKTOP in $BASE_DIR/config-files/*.desktop; do
 	cp $DOT_DESKTOP ~/.config/autostart/
 done
