@@ -5,4 +5,3 @@ done
 for DOT_DESKTOP in config-files/*.desktop; do
 	cp $DOT_DESKTOP ~/.config/autostart/
 done
-cp ./config-files/vimrc /usr/share/vim/
