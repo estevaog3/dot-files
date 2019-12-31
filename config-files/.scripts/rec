@@ -1,0 +1,21 @@
+#!/bin/bash
+echo "Setting a rectangle to record"
+echo "Position the mouse cursor on the left-top corner (enter to continue)"
+read
+eval "$(xdotool getmouselocation -shell 2>/dev/null)"
+LEFT_TOP_X=$X
+LEFT_TOP_Y=$Y
+echo "Position the mouse cursor on the right-bottom corner (enter to continue)"
+read
+eval "$(xdotool getmouselocation -shell 2>/dev/null)"
+RIGHT_BOTTOM_X=$X
+RIGHT_BOTTOM_Y=$Y
+if [ $LEFT_TOP_X -lt $RIGHT_BOTTOM_X ] && [ $LEFT_TOP_Y -lt $RIGHT_BOTTOM_Y ]
+then
+	WIDTH=`expr $RIGHT_BOTTOM_X - $LEFT_TOP_X`
+	HEIGHT=`expr $RIGHT_BOTTOM_Y - $LEFT_TOP_Y`
+	ffmpeg -f x11grab -s ${WIDTH}x${HEIGHT} -i :0.0+${LEFT_TOP_X},${LEFT_TOP_Y} $1
+else
+	echo "Error: invalid positions given. Left-top (${LEFT_TOP_X},${LEFT_TOP_Y}) should be less then right-bottom (${RIGHT_BOTTOM_X},${RIGHT_BOTTOM_Y})"
+	exit 1
+fi

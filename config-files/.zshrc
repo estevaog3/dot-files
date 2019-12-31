@@ -100,7 +100,6 @@ source $ZSH/oh-my-zsh.sh
 
 # my custom aliases:
 # general:
-alias rec="byzanz-record"
 alias jn="jupyter notebook"
 alias x="xdg-open $1 > /dev/null 2>&1"
 alias egrep="egrep --color=auto"

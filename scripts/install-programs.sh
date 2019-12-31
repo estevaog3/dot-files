@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # utilities:
-apt install -y vim zsh htop inxi tmux cmatrix  virtualbox-qt tree neofetch cowsay xclip
+apt install -y vim zsh htop inxi tmux cmatrix  virtualbox-qt tree neofetch cowsay xclip xdotool
 # media:
-apt install -y byzanz ffmpeg nitrogen
+apt install -y ffmpeg nitrogen
 # dev:
 apt install -y git cmake openssh-server nodejs npm yarn mysql-server postgresql mongodb-org docker-ce docker-ce-cli containerd.io ack-grep curl
 # need to install timeshift:
