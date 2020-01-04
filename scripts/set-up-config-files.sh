@@ -10,6 +10,7 @@ for DOT_DESKTOP in $BASE_DIR/config-files/*.desktop; do
 done
 
 cp -r $BASE_DIR/config-files/.scripts ~/
+cp -r $BASE_DIR/config-files/.deamons ~/
 cp -r $BASE_DIR/favorite-wallpapers ~/Pictures
 
 # Add vim plugins
