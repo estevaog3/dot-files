@@ -105,7 +105,7 @@ alias x="xdg-open $1 > /dev/null 2>&1"
 alias egrep="egrep --color=auto"
 alias dk="sudo docker"
 alias si="sudo snap install"
-alias psgrep="ps -ef | grep $1"
+alias psgrep="ps -ef | grep -v grep | grep -e STIME -e"
 # apt, apt-cache:
 alias a="sudo apt"
 alias aar="sudo apt-add-repository"
