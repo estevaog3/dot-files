@@ -2,7 +2,7 @@
 Name="Theme auto changer"
 Type=Application
 NoDisplay=true
-Exec=/home/$USER/.deamons/themed 19:30 5:00
+Exec=/home/estevao/.deamons/themed 19:30 5:00
 Terminal=false
 X-GNOME-Autostart-enabled=true
 

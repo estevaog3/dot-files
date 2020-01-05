@@ -2,6 +2,6 @@
 Name="MonDeamon - Wake up sleeping processes listed on /tmp/.sleeping when session is unlocked"
 Type=Application
 NoDisplay=true
-Exec=/home/$USER/.deamons/mond
+Exec=/home/estevao/.deamons/mond
 Terminal=false
 X-GNOME-Autostart-enabled=true
