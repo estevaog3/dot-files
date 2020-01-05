@@ -1,0 +1,19 @@
+#!/bin/bash
+FILE=/tmp/.sleeping
+dbus-monitor --session "type='signal',interface='org.gnome.ScreenSaver'" |
+while read IS_SCREEN_LOCKED; do
+	case "$IS_SCREEN_LOCKED" in 
+		*"boolean false"*)
+			#screen have just been unlocked
+			if [ -e $FILE ]; then
+				cp $FILE $FILE.tmp
+				rm $FILE
+				for PID in `tac $FILE.tmp`; do
+					kill $PID
+				done
+				rm $FILE.tmp
+			fi
+			;;
+	esac
+done
+
