@@ -1,23 +1,44 @@
 #!/bin/bash
-DARK_HOUR=$1
-DARK_MIN=$2
-DARK_TIME=`to-sec $DARK_HOUR $DARK_MIN`
-HOUR=`date +%H`
-MIN=`date +%M`
-TIME=`to-sec $HOUR $MIN`
-if [ $TIME -lt $DARK_TIME ]
-then
-	if [ $(dconf read /org/gnome/desktop/interface/gtk-theme) != "'Ambiance'" ]; then
-		dconf write /org/gnome/desktop/interface/gtk-theme "'Ambiance'"
-	fi
-	TIME_DIFF=$(($DARK_TIME - $TIME))
-	HOUR_DIFF=$(($TIME_DIFF / 3600))
-	MIN_DIFF=$((($TIME_DIFF - $HOUR_DIFF * 3600) / 60))
-	sleep ${HOUR_DIFF}h ${MIN_DIFF}m
-	dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
-elif [ $HOUR -gt 0 -o $HOUR -lt 2 ]
-then
-	dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
-else
-	dconf write /org/gnome/desktop/interface/gtk-theme "'Ambiance'"
+if [ -z $1 ] || [ -z $2 ]; then
+	echo -e "Example of usage for dark time at 20:00 and light time at 7:00:\nthemed 20:00 7:00"
+	exit 1
 fi
+
+DARK_HOUR=`echo $1 | awk -F: '{print $1}'`
+DARK_MIN=`echo $1 | awk -F: '{print $2}'`
+DARK_TIME=`to-sec $DARK_HOUR $DARK_MIN`
+LIGHT_HOUR=`echo $2 | awk -F: '{print $1}'`
+LIGHT_MIN=`echo $2 | awk -F: '{print $2}'`
+LIGHT_TIME=`to-sec $LIGHT_HOUR $LIGHT_MIN`
+
+if [ $DARK_TIME -le $LIGHT_TIME ]; then
+	echo "Dark time ($DARK_HOUR:$DARK_MIN) must be greater than light time ($LIGHT_HOUR:$LIGHT_MIN)"
+	exit 1
+fi
+
+sleep_until () {
+	WAKE_UP_TIME=$1
+	CURRENT_HOUR=`date +%H`
+	CURRENT_MIN=`date +%M`
+	CURRENT_TIME=`to-sec $CURRENT_HOUR $CURRENT_MIN`
+	if [ $WAKE_UP_TIME -le $CURRENT_TIME ]; then
+		SLEEP_TIME=`expr $(to-sec 24 00) - $CURRENT_TIME + $WAKE_UP_TIME`
+	else
+		SLEEP_TIME=`expr $WAKE_UP_TIME - $CURRENT_TIME`
+	fi
+	echo 'echo $$ >> /tmp/.sleeping;' "exec sleep ${SLEEP_TIME}s" | sh 
+}
+
+while [ true ]; do
+	CURRENT_HOUR=`date +%H`
+	CURRENT_MIN=`date +%M`
+	CURRENT_TIME=`to-sec $CURRENT_HOUR $CURRENT_MIN`
+	if [ $LIGHT_TIME -le $CURRENT_TIME ]  && [ $CURRENT_TIME -lt $DARK_TIME ]
+	then
+		dconf write /org/gnome/desktop/interface/gtk-theme "'Ambiance'"
+		sleep_until $DARK_TIME
+	else
+		dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
+		sleep_until $LIGHT_TIME 
+	fi
+done
