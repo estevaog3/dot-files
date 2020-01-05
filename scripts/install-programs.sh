@@ -1,23 +1,22 @@
 #!/bin/bash
-
 # utilities:
-apt install -y vim zsh htop inxi tmux cmatrix  virtualbox-qt tree neofetch cowsay xclip xdotool
+sudo apt install -y vim zsh htop inxi tmux cmatrix  virtualbox-qt tree neofetch cowsay xclip xdotool
 # media:
-apt install -y ffmpeg nitrogen
+sudo apt install -y ffmpeg nitrogen
 # dev:
-apt install -y git cmake openssh-server nodejs npm yarn mysql-server postgresql mongodb-org docker-ce docker-ce-cli containerd.io ack-grep curl
+sudo apt install -y git cmake openssh-server nodejs npm yarn mysql-server postgresql mongodb-org docker-ce docker-ce-cli containerd.io ack-grep curl
 # need to install timeshift:
-apt-add-repository -y ppa:teejee2008/ppa
-apt update
+sudo apt-add-repository -y ppa:teejee2008/ppa
+sudo apt update
 # important:
-apt install -y timeshift clamav gufw needrestart debsecan lynis
+sudo apt install -y timeshift clamav gufw needrestart debsecan lynis
 # install Oh My Zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 # set zsh as default shell
-sed -i '/^estevao/ s/\/bin\/bash/\/bin\/zsh/' /etc/passwd
+sudo sed -i "/^$USER/ s/\/bin\/bash/\/bin\/zsh/" /etc/passwd
 # set up github:
 git config --global user.email "estevao_carvalho.10@hotmail.com"
 git config --global user.name "EstevaoCostaG3"
 # install pathogen (vim plugin manager)
-mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+sudo mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 	curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
