@@ -5,8 +5,12 @@ for DOT_FILE in $BASE_DIR/config-files/.*; do
 		cp $DOT_FILE ~/
 	fi
 done
+
+mkdir -p ~/.config/autostart
 for DOT_DESKTOP in $BASE_DIR/config-files/*.desktop; do
 	cp $DOT_DESKTOP ~/.config/autostart/
+	FILE_NAME=`echo $DOT_DESKTOP | awk -F/ '{print $NF}'`
+	sed -i "/^Exec/ s/estevao/$USER/" ~/.config/autostart/$FILE_NAME
 done
 
 cp -r $BASE_DIR/config-files/.scripts ~/
