@@ -18,6 +18,6 @@ cp -r $BASE_DIR/config-files/.deamons ~/
 cp -r $BASE_DIR/favorite-wallpapers ~/Pictures
 
 # Add vim plugins 
-git clone https://github.com/junegunn/goyo.vim.git ~/.vim/bundle
-git clone https://github.com/tpope/vim-commentary.git ~/.vim/bundle
-git clone https://github.com/tpope/vim-surround.git ~/.vim/bundle
+git clone https://github.com/junegunn/goyo.vim.git ~/.vim/bundle/goyo.vim
+git clone https://github.com/tpope/vim-commentary.git ~/.vim/bundle/vim-commentary
+git clone https://github.com/tpope/vim-surround.git ~/.vim/bundle/vim-surround
