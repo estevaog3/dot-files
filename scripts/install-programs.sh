@@ -16,9 +16,6 @@ sed -i 's/exec zsh/#/' install.sh
 sudo sh install.sh
 # set zsh as default shell
 sudo sed -i "/^$USER/ s/\/bin\/bash/\/bin\/zsh/" /etc/passwd
-# set up github:
-git config --global user.email "estevao_carvalho.10@hotmail.com"
-git config --global user.name "EstevaoCostaG3"
 # install pathogen (vim plugin manager)
 sudo mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 	curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
