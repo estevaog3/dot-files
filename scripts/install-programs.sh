@@ -11,7 +11,9 @@ sudo apt update
 # important:
 sudo apt install -y timeshift clamav gufw needrestart debsecan lynis
 # install Oh My Zsh
-sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+curl -Lo install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+sed -i 's/exec zsh/#/' install.sh
+sudo sh install.sh
 # set zsh as default shell
 sudo sed -i "/^$USER/ s/\/bin\/bash/\/bin\/zsh/" /etc/passwd
 # set up github:
