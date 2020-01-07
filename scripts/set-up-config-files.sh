@@ -24,3 +24,4 @@ git clone https://github.com/tpope/vim-surround.git ~/.vim/bundle/vim-surround
 # set up github:
 git config --global user.email "estevao_carvalho.10@hotmail.com"
 git config --global user.name "EstevaoCostaG3"
+git config --global core.editor "vim"
