@@ -1,5 +1,10 @@
 #!/bin/bash
 BASE_DIR=..
+if ! [ -e "$BASE_DIR/username" ]; then
+	echo "Error: can't find 'username' file in the directory of this repository"
+	exit 1
+fi
+USER_NAME=`cat $BASE_DIR/username`
 for DOT_FILE in $BASE_DIR/config-files/.*; do
 	if [ -f $DOT_FILE ]; then
 		cp $DOT_FILE ~/
@@ -10,7 +15,7 @@ mkdir -p ~/.config/autostart
 for DOT_DESKTOP in $BASE_DIR/config-files/*.desktop; do
 	cp $DOT_DESKTOP ~/.config/autostart/
 	FILE_NAME=`echo $DOT_DESKTOP | awk -F/ '{print $NF}'`
-	sed -i "/^Exec/ s/estevao/$USER/" ~/.config/autostart/$FILE_NAME
+	sed -i "/^Exec/ s/estevao/$USER_NAME/" ~/.config/autostart/$FILE_NAME
 done
 
 cp -r $BASE_DIR/config-files/.scripts ~/
