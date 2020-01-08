@@ -10,7 +10,7 @@ for DOT_FILE in $BASE_DIR/config-files/.*; do
 		cp $DOT_FILE ~/
 	fi
 done
-
+sed -i "s/\/estevao\//\/$USER_NAME\//" ~/.zshrc
 mkdir -p ~/.config/autostart
 for DOT_DESKTOP in $BASE_DIR/config-files/*.desktop; do
 	cp $DOT_DESKTOP ~/.config/autostart/
