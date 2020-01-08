@@ -1,4 +1,4 @@
-cd scripts
-./install-programs.sh
-./set-up-config-files.sh
-
+echo $USER > ./username
+./scripts/install-programs.sh
+./scripts/set-up-config-files.sh
+rm ./username
