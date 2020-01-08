@@ -27,7 +27,9 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 # fix jupyter notebook command not found:
-export PATH=$PATH:/home/$USER/anaconda3/bin
+if [ -d "/home/$USER/anaconda3/bin" ]; then
+	export PATH=$PATH:/home/$USER/anaconda3/bin
+fi
 # load my custom commands:
 export PATH=$PATH:/home/$USER/.scripts
 
