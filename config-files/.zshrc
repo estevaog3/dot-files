@@ -106,7 +106,6 @@ alias egrep="egrep --color=auto"
 alias dk="sudo docker"
 alias si="sudo snap install"
 alias psgrep="ps -ef | grep -v grep | grep -e STIME -e"
-alias unq='awk '\''!v[$1]++'\'' '
 alias cdiff='diff --color=always -u'
 # apt, apt-cache:
 alias a="sudo apt"
