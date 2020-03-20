@@ -4,7 +4,7 @@ sudo apt install -y vim zsh htop inxi tmux cmatrix  virtualbox-qt tree neofetch 
 # media:
 sudo apt install -y ffmpeg nitrogen
 # dev:
-sudo apt install -y git cmake openssh-server nodejs npm yarn mysql-server postgresql mongodb-org docker-ce docker-ce-cli containerd.io ack-grep curl
+sudo apt install -y git cmake openssh-server nodejs npm yarn mysql-server postgresql mongodb-org ack-grep curl
 # need to install timeshift:
 sudo apt-add-repository -y ppa:teejee2008/ppa
 sudo apt update
