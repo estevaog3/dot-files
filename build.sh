@@ -46,7 +46,6 @@ configure_all(){
 
 	cp -r $BASE_DIR/config-files/.scripts ~/
 	cp -r $BASE_DIR/config-files/.deamons ~/
-	cp -r $BASE_DIR/favorite-wallpapers ~/Pictures
 
 	# Add vim plugins 
 	git clone https://github.com/junegunn/goyo.vim.git ~/.vim/bundle/goyo.vim
