@@ -57,8 +57,11 @@ configure_all(){
 	git config --global user.name "EstevaoCostaG3"
 	git config --global core.editor "vim"
 }
+
 echo "# Installing programs..."
 installer
+
 echo "# Configuring all stuff..."
 configure_all
+
 echo "# All done"
