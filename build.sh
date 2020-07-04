@@ -1,6 +1,10 @@
 #!/bin/bash
 set -eu -o pipefail
-echo $USER > ./username
+
+# globals:
+echo -n "username: "
+read USER_NAME
+[ -z `egrep "^$USER_NAME:" /etc/passwd` ] && echo "Error: user '$USER_NAME' doesn't exists" && exit 1
 
 installer(){
 	# utilities:
@@ -19,7 +23,7 @@ installer(){
 	sed -i 's/exec zsh/#/' install.sh
 	sudo sh install.sh
 	# set zsh as default shell
-	sudo sed -i "/^$USER/ s/\/bin\/bash/\/bin\/zsh/" /etc/passwd
+	sudo sed -i "/^$USER_NAME/ s/\/bin\/bash/\/bin\/zsh/" /etc/passwd
 	# install pathogen (vim plugin manager)
 	sudo mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 			curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
@@ -27,11 +31,6 @@ installer(){
 
 configure_all(){
 	BASE_DIR=.
-	if ! [ -e "$BASE_DIR/username" ]; then
-		echo "Error: can't find 'username' file in the directory of this repository"
-		exit 1
-	fi
-	USER_NAME=`cat $BASE_DIR/username`
 	for DOT_FILE in $BASE_DIR/config-files/.*; do
 		if [ -f $DOT_FILE ]; then
 			cp $DOT_FILE ~/
@@ -58,7 +57,8 @@ configure_all(){
 	git config --global user.name "EstevaoCostaG3"
 	git config --global core.editor "vim"
 }
-
+echo "# Installing programs..."
 installer
+echo "# Configuring all stuff..."
 configure_all
-rm ./username
+echo "# All done"
