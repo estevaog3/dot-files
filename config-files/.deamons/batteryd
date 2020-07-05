@@ -1,0 +1,12 @@
+#!/bin/bash
+LIMIT=22
+while [ true ]; do
+	STATE=`upower -i $(upower -e | grep 'BAT') | grep state | grep -o discharging`
+	if [ $STATE = "discharging" ]; then
+		PERCENTAGE=`upower -i $(upower -e | grep 'BAT') | grep -E "percentage" | egrep -o "[0-9]+"`
+		if [ $PERCENTAGE -le $LIMIT ]; then
+			zenity --warning --width=210 --text="PLUG THE CHARGER IN"	
+		fi
+	fi
+	sleep 1m
+done
