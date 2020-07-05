@@ -30,7 +30,6 @@ installer(){
 		yarn \
 		mysql-server \
 		postgresql \
-		mongodb-org \
 		ack-grep \
 		curl \
 		|| true
