@@ -27,8 +27,6 @@ installer(){
 	sudo apt install -y git \
 		cmake \
 		openssh-server \
-		nodejs \
-		npm \
 		yarn \
 		mysql-server \
 		postgresql \
