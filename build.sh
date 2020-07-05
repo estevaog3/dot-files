@@ -22,6 +22,7 @@ installer(){
 		virtualbox-qt \
 		tree \
 		neofetch \
+		dconf-editor \
 		|| true
 	# dev:
 	sudo apt install -y git \
