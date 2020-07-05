@@ -6,4 +6,3 @@ let mapleader =" "
 "allow searching in subdirectories recursively
 set path+=**
 set wildmenu
-source $VIMRUNTIME/vimrc_example.vim
