@@ -1,8 +1,17 @@
 #!/bin/bash
-if [ -z $1 ]
+if [ -z $1 ] || [ $1 = 'system-audio' ]
 then
 	echo "Error: an output file should be specified"
 	exit 1
+fi
+if [ $2 = 'system-audio' ]
+then
+	AUDIO_INPUT=`pactl list sources short | grep monitor | awk '{print $2}'`
+	AUDIO_CHANNEL=`pactl list sources short | grep monitor | awk '{print $5}' | egrep -o '[0-9]+'`
+	AUDIO_RATE=`pactl list sources short | grep monitor | awk '{print $6}' | egrep -o '[0-9]+'`
+	AUDIO_SYSTEM="-f pulse -ac $AUDIO_CHANNEL -ar $AUDIO_RATE -i $AUDIO_INPUT"
+else
+	AUDIO_SYSTEM=''
 fi
 echo "Setting a rectangle to record"
 echo "Position the mouse cursor on the left-top corner (enter to continue)"
@@ -22,4 +31,9 @@ then
 fi
 WIDTH=`expr $RIGHT_BOTTOM_X - $LEFT_TOP_X`
 HEIGHT=`expr $RIGHT_BOTTOM_Y - $LEFT_TOP_Y`
-ffmpeg -f x11grab -s ${WIDTH}x${HEIGHT} -i :0.0+${LEFT_TOP_X},${LEFT_TOP_Y} $1
+for i in {5..1}; do
+	echo $i
+	sleep 1s
+done
+echo GO!
+ffmpeg $AUDIO_SYSTEM -f x11grab -s ${WIDTH}x${HEIGHT} -framerate 30 -i :0.0+${LEFT_TOP_X},${LEFT_TOP_Y} -vcodec libx264 -preset ultrafast -qp 0 -pix_fmt yuv444p $1 
