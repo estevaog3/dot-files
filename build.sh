@@ -19,11 +19,9 @@ installer(){
 	sudo apt install -y htop \
 		inxi \
 		tmux \
-		cmatrix \
 		virtualbox-qt \
 		tree \
 		neofetch \
-		cowsay \
 		|| true
 	# dev:
 	sudo apt install -y git \
