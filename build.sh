@@ -33,8 +33,6 @@ installer(){
 		ack-grep \
 		curl \
 		|| true
-	# install nvm:
-	wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 	# need to install timeshift:
 	sudo apt-add-repository -y ppa:teejee2008/ppa
 	sudo apt update
@@ -52,6 +50,8 @@ installer(){
 	sudo sh install.sh
 	# set zsh as default shell
 	sudo sed -i "/^$USER_NAME/ s/\/bin\/bash/\/bin\/zsh/" /etc/passwd
+	# install nvm:
+	wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 	# install pathogen (vim plugin manager)
 	sudo mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 			curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
