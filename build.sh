@@ -7,17 +7,23 @@ read USER_NAME
 [ -z `egrep "^$USER_NAME:" /etc/passwd` ] && echo "Error: user '$USER_NAME' doesn't exists" && exit 1
 
 installer(){
+	# necessary:
+	sudo apt install -y \
+		vim \
+		zsh \
+		xclip \
+		xdotool \
+		ffmpeg \
+		nitrogen
 	# utilities:
-	sudo apt install -y vim zsh htop inxi tmux cmatrix  virtualbox-qt tree neofetch cowsay xclip xdotool
-	# media:
-	sudo apt install -y ffmpeg nitrogen
+	sudo apt install -y htop inxi tmux cmatrix  virtualbox-qt tree neofetch cowsay || true
 	# dev:
-	sudo apt install -y git cmake openssh-server nodejs npm yarn mysql-server postgresql mongodb-org ack-grep curl
+	sudo apt install -y git cmake openssh-server nodejs npm yarn mysql-server postgresql mongodb-org ack-grep curl || true
 	# need to install timeshift:
 	sudo apt-add-repository -y ppa:teejee2008/ppa
 	sudo apt update
 	# important:
-	sudo apt install -y timeshift clamav gufw needrestart debsecan lynis
+	sudo apt install -y timeshift clamav gufw needrestart debsecan lynis || true
 	# install Oh My Zsh
 	curl -Lo install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 	sed -i 's/exec zsh/#/' install.sh
