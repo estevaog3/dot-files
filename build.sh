@@ -55,6 +55,9 @@ installer(){
 	# install pathogen (vim plugin manager)
 	sudo mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 			curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+	# install tweak tool:
+	sudo add-apt-repository universe
+	sudo apt install gnome-tweak-tool
 }
 
 configure_all(){
