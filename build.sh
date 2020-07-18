@@ -28,7 +28,6 @@ installer(){
 	sudo apt install -y git \
 		cmake \
 		openssh-server \
-		yarn \
 		mysql-server \
 		postgresql \
 		ack-grep \
