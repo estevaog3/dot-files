@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name="Wallpaper downloader"
+Type=Application
+NoDisplay=true
+Exec=/home/estevao/.startup/wallpapers
+Terminal=false
+X-GNOME-Autostart-enabled=true
+

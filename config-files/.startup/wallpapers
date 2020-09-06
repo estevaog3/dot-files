@@ -1,0 +1,70 @@
+#!/bin/bash
+set -eu -o pipefail
+
+[ -z $1 ] && sleep 4m
+INTERVAL=2 # Download new wallpapers every $INTERVAL days
+QUERIES=(wallpaper amazing funny awesome wonderful space)
+N=6 # size of $QUERIES array
+STEPS=2 # perform download in $STEPS steps
+AMOUNT=10
+SOURCE_DIR=`dirname "$0"`
+LOGS_DIR=$SOURCE_DIR/.logs/wallpapers
+[ ! -d $LOGS_DIR ] && mkdir -p $LOGS_DIR
+CHECK_POINT=$LOGS_DIR/checkpoint
+PHOTO_NAMES_LOG=$LOGS_DIR/photo-names
+if [ ! -e $CHECK_POINT ] || [ -z `cat $CHECK_POINT` ]
+then
+       expr `date +%j` - $INTERVAL > $CHECK_POINT
+fi
+FOLDER=/home/estevao/Pictures/favorite-wallpapers
+[ ! -d $FOLDER/.tmp ] && mkdir $FOLDER/.tmp
+CURRENT_DAY=`date +%j`
+LAST_DOWNLOAD_DAY=`cat $CHECK_POINT` 
+if [[ $LAST_DOWNLOAD_DAY -gt $CURRENT_DAY ]]
+then
+       CURRENT_DAY=`expr $LAST_DOWNLOAD_DAY + $CURRENT_DAY`
+fi
+echo today: $CURRENT_DAY, last day: $LAST_DOWNLOAD_DAY
+if [[ `expr $CURRENT_DAY - $LAST_DOWNLOAD_DAY` -lt $INTERVAL ]] && [[ $1 != "force" ]]
+then
+	echo "Download new pictures maybe in another day"
+	cat $PHOTO_NAMES_LOG | while read NAME
+	do
+		echo $FOLDER/$NAME
+	done
+	exit 0
+fi
+echo "Downloading new pictures"
+USED_QUERIES=()
+for STEP in `seq 1 $STEPS`
+do
+	while printf '%s\n' ${USED_QUERIES[@]} | egrep "^$QUERY"
+	do
+		I=`shuf -i 1-$N -n 1`
+		QUERY=$(echo "${QUERIES[$I]}")
+	done
+	USED_QUERIES[$STEP]=$QUERY
+	echo "step $STEP, query: ${QUERY}"
+	randimg $FOLDER/.tmp -q $QUERY -n `expr $AMOUNT / $STEPS` --show-names >> $PHOTO_NAMES_LOG.tmp
+	[ $? != 0 ] && echo "download failed" && HAS_DOWNLOAD_FAILED=true && break
+done
+if [ $HAS_DOWNLOAD_FAILED ]
+then
+	rm -rf $FOLDER/.tmp
+	rm $PHOTO_NAMES_LOG.tmp
+	exit 1
+fi
+echo "Removing previous pictures"
+cat $PHOTO_NAMES_LOG | while read NAME
+do
+	[ -e $FOLDER/$NAME ] && rm $FOLDER/$NAME || echo "File $FOLDER/$NAME doesn't exists"
+done
+cp $PHOTO_NAMES_LOG.tmp $PHOTO_NAMES_LOG
+rm $PHOTO_NAMES_LOG.tmp
+echo "Moving downloaded pictures to correct directory" 
+cat $PHOTO_NAMES_LOG | while read NAME
+do
+	mv $FOLDER/.tmp/$NAME $FOLDER
+done
+rm -rf $FOLDER/.tmp
+echo $CURRENT_DAY > $CHECK_POINT
