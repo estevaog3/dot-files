@@ -1,8 +1,8 @@
 [Desktop Entry]
-Name="Wallpaper downloader"
+Name="Remember to plug in the battery charger"
 Type=Application
 NoDisplay=true
-Exec=/home/estevao/.startup/wallpapers
+Exec=/home/estevao/.deamons/batteryd
 Terminal=false
 X-GNOME-Autostart-enabled=true
 
