@@ -2,7 +2,7 @@
 set -eu -o pipefail
 
 # globals:
-echo -n "username: "
+echo -n "This system's username: "
 read USER_NAME
 [ -z `egrep "^$USER_NAME:" /etc/passwd` ] && echo "Error: user '$USER_NAME' doesn't exists" && exit 1
 
