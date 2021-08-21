@@ -78,10 +78,6 @@ configure_all(){
 	git clone https://github.com/junegunn/goyo.vim.git ~/.vim/bundle/goyo.vim
 	git clone https://github.com/tpope/vim-commentary.git ~/.vim/bundle/vim-commentary
 	git clone https://github.com/tpope/vim-surround.git ~/.vim/bundle/vim-surround
-	# set up github:
-	git config --global user.email "estevao_carvalho.10@hotmail.com"
-	git config --global user.name "estevaog3"
-	git config --global core.editor "vim"
 }
 
 echo "# Installing programs..."
