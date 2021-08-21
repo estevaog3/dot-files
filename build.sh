@@ -45,14 +45,12 @@ installer(){
 		lynis \
 		|| true
 	# install Oh My Zsh
-	curl -Lo install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-	sed -i 's/exec zsh/#/' install.sh
-	sudo sh install.sh
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sed 's/exec zsh/#/')"
 	# set zsh as default shell
 	sudo sed -i "/^$USER_NAME/ s/\/bin\/bash/\/bin\/zsh/" /etc/passwd
 	# install pathogen (vim plugin manager)
-	sudo mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-			curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+	sudo mkdir -p ~/.vim/autoload ~/.vim/bundle
+	sudo curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 	# install tweak tool:
 	sudo add-apt-repository universe
 	sudo apt install gnome-tweak-tool
