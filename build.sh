@@ -19,7 +19,6 @@ installer(){
 	sudo apt install -y htop \
 		inxi \
 		tmux \
-		virtualbox-qt \
 		tree \
 		neofetch \
 		dconf-editor \
@@ -28,7 +27,6 @@ installer(){
 	sudo apt install -y git \
 		cmake \
 		openssh-server \
-		mysql-server \
 		postgresql \
 		ack-grep \
 		curl \
@@ -40,7 +38,6 @@ installer(){
 	sudo apt install -y timeshift \
 		clamav \
 		gufw \
-		needrestart \
 		debsecan \
 		lynis \
 		|| true
@@ -48,12 +45,6 @@ installer(){
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sed 's/exec zsh/#/')"
 	# set zsh as default shell
 	sudo sed -i "/^$USER_NAME/ s/\/bin\/bash/\/bin\/zsh/" /etc/passwd
-	# install pathogen (vim plugin manager)
-	sudo mkdir -p ~/.vim/autoload ~/.vim/bundle
-	sudo curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-	# install tweak tool:
-	sudo add-apt-repository universe
-	sudo apt install gnome-tweak-tool
 }
 
 configure_all(){
@@ -70,14 +61,6 @@ configure_all(){
 		FILE_NAME=`echo $DOT_DESKTOP | awk -F/ '{print $NF}'`
 		sed -i "/^Exec/ s/estevao/$USER_NAME/" ~/.config/autostart/$FILE_NAME
 	done
-
-	cp -r $BASE_DIR/config-files/.scripts ~/
-	cp -r $BASE_DIR/config-files/.deamons ~/
-
-	# Add vim plugins 
-	git clone https://github.com/junegunn/goyo.vim.git ~/.vim/bundle/goyo.vim
-	git clone https://github.com/tpope/vim-commentary.git ~/.vim/bundle/vim-commentary
-	git clone https://github.com/tpope/vim-surround.git ~/.vim/bundle/vim-surround
 }
 
 echo "# Installing programs..."
