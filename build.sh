@@ -58,9 +58,9 @@ installer(){
 
 configure_all(){
 	BASE_DIR=.
-	for DOT_FILE in $BASE_DIR/config-files/.*; do
-		if [ -f $DOT_FILE ]; then
-			cp $DOT_FILE ~/
+	for DOTS in $BASE_DIR/config-files/.*; do
+	  if [ -f $DOTS ] || [ -d $DOTS ]; then
+			cp $DOTS ~/
 		fi
 	done
 	sed -i "s/\/estevao\//\/$USER_NAME\//" ~/.zshrc
