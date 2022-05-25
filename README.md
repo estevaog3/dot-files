@@ -1,1 +1,3 @@
-# set-up-new-linux-machine
+# dot-files
+
+A little repo to store my dot-files :)
