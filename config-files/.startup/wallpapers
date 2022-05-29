@@ -4,21 +4,20 @@ setup(){
 	INTERVAL_IN_SECONDS=`expr 2 \* 86400` # Download every 2 days
 	QUERIES=(wallpaper amazing funny awesome wonderful space)
 	AMOUNT=10
+	OUT_DIR=/home/estevao/Pictures/favorite-wallpapers
 
 	LOGS_DIR=`dirname "$0"`/.logs/wallpapers
 	CHECKPOINT_FILE=$LOGS_DIR/checkpoint
 	SAVED_WALLPAPERS_FILE=$LOGS_DIR/saved_wallpapers
 
-	IS_TO_FORCE_DOWNLOAD=false
-	CURRENT_TIMESTAMP=`date +%s`
-	if [ ! -d $LOGS_DIR ]; then
+	[[ $1 = force ]] && IS_TO_FORCE_DOWNLOAD=true || IS_TO_FORCE_DOWNLOAD=false
+	if [[ ! -d $LOGS_DIR || ! -f $CHECKPOINT_FILE || ! -f $SAVED_WALLPAPERS_FILE ]]; then
 		mkdir -p $LOGS_DIR
-		touch $CHECKPOINT_FILE $SAVED_WALLPAPERS_FILE
+		echo "0" > $CHECKPOINT_FILE && : > $SAVED_WALLPAPERS_FILE
 		IS_TO_FORCE_DOWNLOAD=true
 	fi
-	
-	OUT_DIR=/home/estevao/Pictures/favorite-wallpapers
-	[ ! -d $OUT_DIR/.tmp ] && mkdir $OUT_DIR/.tmp
+	PREVIOUS_TIMESTAMP=`cat $CHECKPOINT_FILE`
+	CURRENT_TIMESTAMP=`date +%s`
 }
 
 is_to_download_now(){
