@@ -1,5 +1,4 @@
 #!/bin/bash
-set -eu -o pipefail
 
 setup(){
 	INTERVAL_IN_SECONDS=`expr 2 \* 86400` # Download every 2 days
