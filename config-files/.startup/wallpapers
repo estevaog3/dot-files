@@ -23,8 +23,9 @@ setup(){
 is_to_download_now(){
 	CURRENT=$1
 	PREVIOUS=$2
+	[[ $PREVIOUS -gt $CURRENT ]] && echo "ERROR: previous time is greater than current: $PREVIOUS > $CURRENT" >&2 && exit 1
 
-	if [ `expr $CURRENT - $PREVIOUS` -lt $INTERVAL_IN_SECONDS ]; then
+	if [[ `expr $CURRENT - $PREVIOUS` -lt $INTERVAL_IN_SECONDS ]]; then
 		return 1 # do not download
 	fi
 	return 0 # do download
