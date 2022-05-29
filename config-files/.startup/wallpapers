@@ -31,48 +31,40 @@ is_to_download_now(){
 	return 0 # do download
 }
 
-echo "Downloading new pictures"
-USED_QUERIES=()
-for STEP in `seq 1 $STEPS`
-do
-	while printf '%s\n' ${USED_QUERIES[@]} | egrep "^$QUERY"
-	do
-		I=`shuf -i 1-$N -n 1`
-		QUERY=$(echo "${QUERIES[$I]}")
-	done
-	USED_QUERIES[$STEP]=$QUERY
-	echo "step $STEP, query: ${QUERY}"
-	randimg $FOLDER/.tmp -q $QUERY -n `expr $AMOUNT / $STEPS` --show-names >> $PHOTO_NAMES_LOG.tmp
-	[ $? != 0 ] && echo "download failed" && HAS_DOWNLOAD_FAILED=true && break
-done
-if [ $HAS_DOWNLOAD_FAILED ]
-then
-	rm -rf $FOLDER/.tmp
-	rm $PHOTO_NAMES_LOG.tmp
-	exit 1
-fi
-echo "Removing previous pictures"
-cat $PHOTO_NAMES_LOG | while read NAME
-do
-	[ -e $FOLDER/$NAME ] && rm $FOLDER/$NAME || echo "File $FOLDER/$NAME doesn't exists"
-done
-cp $PHOTO_NAMES_LOG.tmp $PHOTO_NAMES_LOG
-rm $PHOTO_NAMES_LOG.tmp
-echo "Moving downloaded pictures to correct directory" 
-cat $PHOTO_NAMES_LOG | while read NAME
-do
-	mv $FOLDER/.tmp/$NAME $FOLDER
-done
-rm -rf $FOLDER/.tmp
-echo $CURRENT_DAY > $CHECK_POINT
-
-
-main(){
-	setup
-	if [ ! $IS_TO_FORCE_DOWNLOAD ]; then 
-		is_to_download_now `date +%s` 
-		[ $? = 1 ] && echo "It's not time to download" && exit 0
-	fi
+download_wallpapers(){
+	echo "INFO: Begin download..."
+	TEMP_OUT_DIR=$OUT_DIR/.tmp-$CURRENT_TIMESTAMP
+	mkdir -p $TEMP_OUT_DIR
+	# TODOs:
+	# download images to temporary location at $TEMP_OUT_DIR
+	# store name of downloaded files to some file (so that we can get them back later)
+	# return 0 if it's successful; otherwise, return 1.
+	echo "INFO: All done"
 }
 
-main
+commit_downloads(){
+	# Before moving downloaded files from source to dest, it removes previously donwloaded files
+	# so that we can have the behavior of cyclic wallpapers, and avoid conflicting file names
+	SOURCE_DIR=$1
+	DEST_DIR=$2
+	PREVIOUS_FILES=${@:3}
+	[[ ! -d $SOURCE_DIR || ! -d $DEST_DIR ]] && echo "ERROR: Directories not found: $SOURCE_DIR, $DEST_DIR" >&2 && exit 1
+	
+	for FILE in $PREVIOUS_FILES; do
+		rm -f $SOURCE_DIR/$FILE
+	done
+	mv $SOURCE_DIR/* $DEST_DIR
+}
+
+verify_dependencies(){
+	[[ `which randimg` == "" ]] && echo "ERROR: Needs to install randimg, see how at ttps://github.com/estevaog3/randimg" >&2 && exit 1
+}
+
+verify_dependencies
+setup $*
+if [[ $IS_TO_FORCE_DOWNLOAD = false ]]; then 
+	is_to_download_now $CURRENT_TIMESTAMP $PREVIOUS_TIMESTAMP
+	[[ $? = 1 ]] && echo "INFO: it's not the time to download. Nothing done." && exit 0
+fi
+download_wallpapers
+commit_downloads $TEMP_OUT_DIR $OUT_DIR #TODO: pass in previously downloaded images here
