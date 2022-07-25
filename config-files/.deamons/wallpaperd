@@ -1,4 +1,15 @@
+#!/bin/bash
+get_random_filepath(){
+	DIR=$1
+	find $DIR/*.{jpg,png} | shuf -n 1
+}
 while [ true ]; do
-	nitrogen --set-auto --random ~/Pictures/favorite-wallpapers
+	COLOR_SCHEME=`gsettings get org.gnome.desktop.interface color-scheme`
+	WALLPAPER_FILEPATH=`get_random_filepath ~/Pictures/favorite-wallpapers`
+	if [[ `echo $COLOR_SCHEME | grep dark` ]]; then
+		gsettings set org.gnome.desktop.background picture-uri-dark "file://$WALLPAPER_FILEPATH"
+	else
+		gsettings set org.gnome.desktop.background picture-uri "file://$WALLPAPER_FILEPATH"
+	fi
 	sleep $1
 done
