@@ -35,10 +35,12 @@ while [ true ]; do
 	CURRENT_TIME=`to-sec $CURRENT_HOUR $CURRENT_MIN`
 	if [ $LIGHT_TIME -le $CURRENT_TIME ]  && [ $CURRENT_TIME -lt $DARK_TIME ]
 	then
-		dconf write /org/gnome/desktop/interface/gtk-theme "'Ambiance'"
+		dconf write /org/gnome/desktop/interface/gtk-theme "'Yaru-purple'"
+		gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
 		sleep_until $DARK_TIME
 	else
-		dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
+		dconf write /org/gnome/desktop/interface/gtk-theme "'Yaru-purple-dark'"
+		gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 		sleep_until $LIGHT_TIME 
 	fi
 done
