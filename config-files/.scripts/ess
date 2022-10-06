@@ -1,3 +1,5 @@
 #!/bin/bash
-LAST_SCREEN_SHOT=$(ls ~/Pictures | egrep -i '^screenshot' | tail -n 1)
-gimp ~/Pictures/"$LAST_SCREEN_SHOT" > /dev/null 2>&1 &
+[ -d ~/Pictures/Screenshots ] && DIR=~/Pictures/Screenshots || DIR=~/Pictures 
+echo $DIR
+LAST_SCREEN_SHOT=$(ls $DIR | egrep -i '^screenshot' | tail -n 1)
+gimp $DIR/"$LAST_SCREEN_SHOT" > /dev/null 2>&1 &
