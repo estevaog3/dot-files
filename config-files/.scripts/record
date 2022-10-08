@@ -36,4 +36,4 @@ for i in {5..1}; do
 	sleep 1s
 done
 echo GO!
-ffmpeg $AUDIO_SYSTEM -f x11grab -s ${WIDTH}x${HEIGHT} -framerate 30 -i :0.0+${LEFT_TOP_X},${LEFT_TOP_Y} -vcodec libx264 -preset ultrafast -qp 0 -pix_fmt yuv444p $1 
+ffmpeg $AUDIO_SYSTEM -f x11grab -s ${WIDTH}x${HEIGHT} -framerate 30 -i :1+${LEFT_TOP_X},${LEFT_TOP_Y} -vcodec libx264 -preset ultrafast -qp 0 -pix_fmt yuv444p $1 
