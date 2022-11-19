@@ -100,13 +100,16 @@ source $ZSH/oh-my-zsh.sh
 
 # my custom aliases:
 # general:
-alias jn="jupyter notebook"
+alias jn="jupyter notebook > /dev/null 2>&1 &"
 alias x="xdg-open $1 > /dev/null 2>&1"
 alias egrep="egrep --color=auto"
 alias dk="sudo docker"
 alias si="sudo snap install"
 alias psgrep="ps -ef | grep -v grep | grep -e STIME -e"
 alias cdiff='diff --color=always -u'
+alias pbcopy="xclip -selection clipboard"
+alias pbpaste="xclip -selection clipboard -o"
+alias json="python3 -m json.tool"
 # apt, apt-cache:
 alias a="sudo apt"
 alias aar="sudo apt-add-repository"
