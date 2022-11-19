@@ -2,7 +2,7 @@
 set -eu -o pipefail
 
 # globals:
-echo -n "This system's username: "
+echo -n "Type in this system's username: "
 read USER_NAME
 [ -z `egrep "^$USER_NAME:" /etc/passwd` ] && echo "Error: user '$USER_NAME' doesn't exists" && exit 1
 
@@ -41,10 +41,6 @@ installer(){
 		debsecan \
 		lynis \
 		|| true
-	# install Oh My Zsh
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sed 's/exec zsh/#/')"
-	# set zsh as default shell
-	sudo sed -i "/^$USER_NAME/ s/\/bin\/bash/\/bin\/zsh/" /etc/passwd
 }
 
 configure_all(){
@@ -64,9 +60,13 @@ configure_all(){
 }
 
 echo "# Installing programs..."
-installer
+# installer
 
 echo "# Configuring all stuff..."
-configure_all
+# configure_all
 
-echo "# All done"
+echo '# All done
+You might want to run the following commands to install and configure oh my zsh:
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sudo sed -i "/^$USER/ s/\/bin\/bash/\/bin\/zsh/" /etc/passwd
+'
