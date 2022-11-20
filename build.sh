@@ -45,11 +45,12 @@ installer(){
 
 configure_all(){
 	BASE_DIR=.
-	for DOTS in $BASE_DIR/config-files/.*; do
-	  if [ -f $DOTS ] || [ -d $DOTS ]; then
-			cp $DOTS ~/
+	for DOT_DIR in $BASE_DIR/config-files/.*; do
+	  if [[ -f $DOT_DIR || -d $DOT_DIR && $DOT_DIR != 'config-files/.local' ]]; then
+			cp $DOT_DIR ~/
 		fi
 	done
+	cp config-files/.local/bin/* ~/.local/bin
 	sed -i "s/\/estevao\//\/$USER_NAME\//" ~/.zshrc
 	mkdir -p ~/.config/autostart
 	for DOT_DESKTOP in $BASE_DIR/config-files/*.desktop; do
