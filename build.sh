@@ -44,8 +44,7 @@ installer(){
 }
 
 configure_all(){
-	BASE_DIR=.
-	for DOT_DIR in $BASE_DIR/config-files/.*; do
+	for DOT_DIR in config-files/.*; do
 	  if [[ -f $DOT_DIR || -d $DOT_DIR && $DOT_DIR != 'config-files/.local' ]]; then
 			cp $DOT_DIR ~/
 		fi
@@ -53,7 +52,7 @@ configure_all(){
 	cp config-files/.local/bin/* ~/.local/bin
 	sed -i "s/\/estevao\//\/$USER_NAME\//" ~/.zshrc
 	mkdir -p ~/.config/autostart
-	for DOT_DESKTOP in $BASE_DIR/config-files/*.desktop; do
+	for DOT_DESKTOP in config-files/*.desktop; do
 		cp $DOT_DESKTOP ~/.config/autostart/
 		FILE_NAME=`echo $DOT_DESKTOP | awk -F/ '{print $NF}'`
 		sed -i "/^Exec/ s/estevao/$USER_NAME/" ~/.config/autostart/$FILE_NAME
@@ -61,10 +60,10 @@ configure_all(){
 }
 
 echo "# Installing programs..."
-# installer
+installer
 
 echo "# Configuring all stuff..."
-# configure_all
+configure_all
 
 echo '# All done
 You might want to run the following commands to install and configure oh my zsh:
