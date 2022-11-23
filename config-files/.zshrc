@@ -87,7 +87,14 @@ alias lsl="ls -lh --color=auto --group-directories-first"
 #git:
 alias gce="git commit -e"
 alias gnt="git init"
+alias gla="git pull --all"
 # my custom settings:
 #
 # get suggestions to install command not found, just like in bash
 source /etc/zsh_command_not_found
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
