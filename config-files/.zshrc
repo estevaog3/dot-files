@@ -62,8 +62,8 @@ alias dk="sudo docker"
 alias si="sudo snap install"
 alias psgrep="ps -ef | grep -v grep | grep -e STIME -e"
 alias cdiff='diff --color=always -u'
-alias pbcopy="xclip -selection clipboard"
-alias pbpaste="xclip -selection clipboard -o"
+alias copy="xclip -selection clipboard"
+alias ppaste="xclip -selection clipboard -o"
 alias json="python3 -m json.tool"
 # apt, apt-cache:
 alias a="sudo apt"
