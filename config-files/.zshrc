@@ -17,9 +17,6 @@ HYPHEN_INSENSITIVE="true"
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS=true
 
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
-
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
@@ -59,6 +56,7 @@ alias jn="jupyter notebook > /dev/null 2>&1 &"
 alias x="xdg-open $1 > /dev/null 2>&1"
 alias egrep="egrep --color=auto"
 alias dk="sudo docker"
+alias dkc="docker compose"
 alias si="sudo snap install"
 alias psgrep="ps -ef | grep -v grep | grep -e STIME -e"
 alias cdiff='diff --color=always -u'
